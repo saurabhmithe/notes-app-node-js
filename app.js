@@ -39,7 +39,7 @@ else if (command === 'remove') {
         console.log('Note Removed');
         console.log('---');
         console.log(`Title: ${argv.title}`);
-    } else console.log('Failed to remove node');
+    } else console.log('Failed to remove note. Note not found.');
 
 }
 else console.log('command not recognized');
