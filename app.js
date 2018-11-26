@@ -34,5 +34,12 @@ if(command === 'add') {
 }
 else if (command === 'list') notes.getAllNotes();
 else if (command === 'read') notes.getNote(argv.title);
-else if (command === 'remove') notes.removeNote(argv.title);
+else if (command === 'remove') {
+    if(notes.removeNote(argv.title)) {
+        console.log('Note Removed');
+        console.log('---');
+        console.log(`Title: ${argv.title}`);
+    } else console.log('Failed to remove node');
+
+}
 else console.log('command not recognized');
