@@ -1,5 +1,3 @@
-console.log('Starting notes.js');
-
 const fs = require('fs');
 
 // to use functions from this file in any other file, we need to export the functions
@@ -48,7 +46,6 @@ var removeNote = (title) => {
 }
 
 var logNote = (note) => {
-    debugger;
     console.log('---');
     console.log(`Title: ${note.title}`);
     console.log(`Body: ${note.body}`);

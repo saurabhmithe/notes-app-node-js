@@ -1,5 +1,3 @@
-console.log('Starting app.js');
-
 // modules are units of functionality
 // modules are loaded using require keyword
 // modules can be third party or user's own files
@@ -18,7 +16,30 @@ const notes = require('./notes.js');
 
 // a module to parse command line input easily
 const yargs = require('yargs');
-const argv = yargs.argv;
+
+const titleOptions = {
+    describe: 'Title of the note',
+    demand: true,
+    alias: 't'
+}
+
+const bodyOptions = {
+    describe: 'Body of the note',
+    demand: true,
+    alias: 'b'
+}
+
+const argv = yargs
+    .command('add', 'Add a new note', {
+        title: titleOptions,
+        body: bodyOptions
+    }).command('remove', 'Remove a note', {
+        title: titleOptions
+    }).command('read', 'Read a note', {
+        title: titleOptions
+    }).command('list', 'List all notes')
+    .help()
+    .argv;
 
 // get the command line argument
 var command = process.argv[2];
@@ -32,9 +53,8 @@ if(command === 'add') {
 }
 else if (command === 'list') {
     var allNotes = notes.getAllNotes();
-    for (var i = 0; i < allNotes.length; i++) {
-        notes.logNote(allNotes[i]);
-    }
+    console.log(`Printing ${allNotes.length} notes`);
+    allNotes.forEach((note) => notes.logNote(note));
 }
 else if (command === 'read') {
     var note = notes.getNote(argv.title);
