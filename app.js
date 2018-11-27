@@ -30,7 +30,12 @@ if(command === 'add') {
         notes.logNote(note);
     } else console.log('Failed to add node');
 }
-else if (command === 'list') notes.getAllNotes();
+else if (command === 'list') {
+    var allNotes = notes.getAllNotes();
+    for (var i = 0; i < allNotes.length; i++) {
+        notes.logNote(allNotes[i]);
+    }
+}
 else if (command === 'read') {
     var note = notes.getNote(argv.title);
     if (note) {
