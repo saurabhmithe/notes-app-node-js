@@ -33,7 +33,14 @@ if(command === 'add') {
     } else console.log('Failed to add node');
 }
 else if (command === 'list') notes.getAllNotes();
-else if (command === 'read') notes.getNote(argv.title);
+else if (command === 'read') {
+    var note = notes.getNote(argv.title);
+    if (note) {
+        console.log(note.title);
+        console.log('---');
+        console.log(note.body);
+    } else console.log('Note not found');
+}
 else if (command === 'remove') {
     if(notes.removeNote(argv.title)) {
         console.log('Note Removed');
